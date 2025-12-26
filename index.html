@@ -10,20 +10,20 @@
 <body>
 
     <h1>Tic Tac Toe</h1>
-
     <div class="board">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
+        <div class="cell" id="c0" onclick="play(0)"></div>
+        <div class="cell" id="c1" onclick="play(1)"></div>
+        <div class="cell" id="c2" onclick="play(2)"></div>
 
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
+        <div class="cell" id="c3" onclick="play(3)"></div>
+        <div class="cell" id="c4" onclick="play(4)"></div>
+        <div class="cell" id="c5" onclick="play(5)"></div>
 
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
+        <div class="cell" id="c6" onclick="play(6)"></div>
+        <div class="cell" id="c7" onclick="play(7)"></div>
+        <div class="cell" id="c8" onclick="play(8)"></div>
     </div>
+
 
     <p id="status">Player ❌ turn</p>
     <button onclick="restartGame()">Restart</button>

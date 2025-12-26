@@ -1,11 +1,10 @@
-let plateau = Array(9).fill("");
-let joueur = "❌";
-let gameOver = false;
+// board
+var plateau = ["", "", "", "", "", "", "", "", ""];
+var joueur = "❌";
+var gameOver = false;
 
-const cells = document.querySelectorAll(".cell");
-const statusText = document.getElementById("status");
-
-const winningCombinations = [
+// winning combinations
+var winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -16,45 +15,81 @@ const winningCombinations = [
     [2, 4, 6]
 ];
 
-cells.forEach(cell => {
-    cell.addEventListener("click", () => {
-        const index = cell.dataset.index;
+// click on a cell
+function play(index) {
 
-        if (plateau[index] !== "" || gameOver) return;
+    if (plateau[index] != "" || gameOver == true) {
+        return;
+    }
 
-        plateau[index] = joueur;
-        cell.textContent = joueur;
+    plateau[index] = joueur;
+    document.getElementById("c" + index).innerHTML = joueur;
 
-        if (checkWin()) {
-            statusText.textContent = `Le joueur ${joueur} gagne 🎉`;
-            gameOver = true;
-            return;
-        }
+    if (checkWin() == true) {
+        document.getElementById("status").innerHTML =
+            "Le joueur " + joueur + " gagne 🎉";
+        gameOver = true;
+        return;
+    }
 
-        if (plateau.every(cell => cell !== "")) {
-            statusText.textContent = "Match nul 🤝";
-            gameOver = true;
-            return;
-        }
+    if (isDraw() == true) {
+        document.getElementById("status").innerHTML = "Match nul 🤝";
+        gameOver = true;
+        return;
+    }
 
-        joueur = joueur === "❌" ? "⭕" : "❌";
-        statusText.textContent = `Player ${joueur} turn`;
-    });
-});
+    if (joueur == "❌") {
+        joueur = "⭕";
+    } else {
+        joueur = "❌";
+    }
 
-function checkWin() {
-    return winningCombinations.some(combination =>
-        combination.every(index => plateau[index] === joueur)
-    );
+    document.getElementById("status").innerHTML =
+        "Player " + joueur + " turn";
 }
 
+// check win (very simple)
+function checkWin() {
+    var i = 0;
+    while (i < winningCombinations.length) {
+        var a = winningCombinations[i][0];
+        var b = winningCombinations[i][1];
+        var c = winningCombinations[i][2];
+
+        if (plateau[a] != "" &&
+            plateau[a] == plateau[b] &&
+            plateau[b] == plateau[c]) {
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
+// check draw
+function isDraw() {
+    var i = 0;
+    while (i < 9) {
+        if (plateau[i] == "") {  //the game can still continue.
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+
+// restart game
 function restartGame() {
-    plateau = Array(9).fill("");
+    plateau = ["", "", "", "", "", "", "", "", ""];
     joueur = "❌";
     gameOver = false;
-    statusText.textContent = "Player ❌ turn";
 
-    cells.forEach(cell => {
-        cell.textContent = "";
-    });
+    var i = 0;
+    while (i < 9) {
+        document.getElementById("c" + i).innerHTML = "";
+        i++;
+    }
+
+    document.getElementById("status").innerHTML =
+        "Player ❌ turn";
 }
