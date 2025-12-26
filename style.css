@@ -1,39 +1,87 @@
+/* General Body Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    background: #f4f4f4;
+    background: #e0e5ec;
+    /* soft gray-blue background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #2c3e50;
 }
 
+/* Heading */
 h1 {
-    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 2.8rem;
+    color: #34495e;
+    /* deep muted blue */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Game Board */
 .board {
     display: grid;
-    grid-template-columns: repeat(3, 120px);
-    gap: 10px;
+    grid-template-columns: repeat(3, 110px);
+    gap: 15px;
     justify-content: center;
     margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Cells */
 .cell {
-    width: 120px;
-    height: 120px;
-    background: white;
-    border: 2px solid #333;
-    font-size: 60px;
+    width: 110px;
+    height: 110px;
+    background: #f7f9fc;
+    /* light but slightly vivid gray */
+    border-radius: 12px;
+    font-size: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .cell:hover {
-    background: #eaeaea;
+    transform: scale(1.07);
+    background: #dde6f2;
+    /* subtle soft blue on hover */
 }
 
+/* Status Message */
+#status {
+    font-size: 1.4rem;
+    margin: 15px 0;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Restart Button */
 button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 16px;
     cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #5dade2;
+    /* soft blue with more presence */
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background: #2e86c1;
+    /* deeper blue */
+    transform: translateY(-2px);
 }
